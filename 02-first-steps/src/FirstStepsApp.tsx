@@ -1,19 +1,31 @@
 import { MyAwesomeApp } from "./MyAwesomeApp";
+import { ItemCounter } from "./shopping-cart/ItemCounter";
+
+interface ItemInCart {
+	productName: string;
+	quantity: number;
+}
+
+const itemsInCart: ItemInCart[] = [
+	{ productName: "Nintendo Switch 2", quantity: 1 },
+	{ productName: "Pro Controller", quantity: 2 },
+	{ productName: "Super Smash", quantity: 5 },
+];
 
 export function FirstStepsApp() {
 	return (
 		<>
-			<h1>Hola Mundo!!</h1>
+			<h1>Carrito de compras</h1>
 
-			<p>esto es un párrafo!!</p>
+			{itemsInCart.map(({ productName, quantity }) => (
+				<ItemCounter key={productName} name={productName} quantity={quantity} />
+			))}
 
-			<button>click me</button>
+			{/* <ItemCounter name="Nintendo Switch 2" quantity={1} />
+			<ItemCounter name="Pro Controller" quantity={2} />
+			<ItemCounter name="Super Smash" quantity={1} /> */}
 
-			<div>
-				<h2>Hola dentro de un div</h2>
-			</div>
-
-			<MyAwesomeApp />
+			{/* <MyAwesomeApp /> */}
 		</>
 	);
 }
