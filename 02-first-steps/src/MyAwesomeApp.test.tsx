@@ -16,13 +16,21 @@ describe("MyAwesomeApp", () => {
 
 	test("should render firstName and lastName - screen", () => {
 		render(<MyAwesomeApp />);
-		screen.debug();
 
 		// const h1 = screen.getByRole("heading", { level: 1 });
 		const h1 = screen.getByTestId("first-name-title");
 
-		console.log(h1.innerHTML);
-
 		expect(h1.innerHTML).toContain("Mauro");
+	});
+
+	test("should match snapshot", () => {
+		const { container } = render(<MyAwesomeApp />);
+
+		expect(container).toMatchSnapshot();
+	});
+
+	test("should match snapshot - screen", () => {
+		render(<MyAwesomeApp />);
+		expect(screen.getByTestId("div-app")).matchSnapshot();
 	});
 });
